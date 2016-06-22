@@ -1,0 +1,124 @@
+﻿@model  FinalTemplate.Models.User
+
+
+
+<div style="margin:0 auto;max-width:400px;margin-top:46px">
+
+    @using (Html.BeginForm("signup", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+
+    <fieldset>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "FIRSTNAME" })
+
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "LASTNAME" })
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "USERNAME" })
+            
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Username)
+        </div>
+
+<div class="form-group">
+
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "EMAIL" })
+</div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+<div id="result" style="margin:0 auto;max-width:400px;color:red"></div>
+
+<div class="form-group">
+
+    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "PASSWORD" })
+</div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+<div class="form-group">
+
+    @Html.TextBoxFor(m => m.SecretQuestion, new { @class = "form-control", @placeholder = "SECRET QUESTION" })
+</div>
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.SecretQuestion)
+        </div>
+
+<div class="form-group">
+
+    @Html.TextBoxFor(m => m.SecretAnswer, new { @class = "form-control", @placeholder = "SECRET ANSWER" })
+</div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.SecretAnswer)
+        </div>
+
+<div class="form-group">
+    <input type="file" name="imageFile" class="form-control" placeholder="Choose Image" required />
+</div>
+
+<div class="form-group">
+    <button class="tm-submit-btn" type="submit" name="submit">Register</button>
+</div>
+
+
+</fieldset>
+    }
+    </div>
+
+<script type="text/javascript" src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#footer1').css('margin:100px')
+
+        $('#checking').hide();
+
+        $('#Email').blur(function () {
+
+            var email = $('#Email').val();
+
+
+            $.getJSON("/home/checkEmail?Email=" + email, function (data) {
+                if (data) {
+                    $('#result').text("User with this email already exists");
+
+                }
+                else {
+                    $('#result').text("");
+                }
+            });
+
+        });
+
+    });
+
+
+</script>
+

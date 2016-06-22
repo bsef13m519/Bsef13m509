@@ -1,0 +1,92 @@
+﻿
+@model  FinalTemplate.Models.User
+
+<div style="margin:0 auto;max-width:400px;margin-top:145px;margin-bottom:160px">
+
+     @using (Html.BeginForm())
+     {
+
+
+
+
+    <fieldset>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "EMAIL", type = "email" })
+
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div id="result" style="margin:0 auto;max-width:400px;color:red"></div>
+
+        <div id="secQuestion" style="margin:0 auto;max-width:400px;color:red"></div>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.SecretAnswer, new { @class = "form-control", @placeholder = "SECRET ANSWER" })
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.SecretAnswer)
+        </div>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "PASSWORD" })
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        <div class="form-group">
+
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "RETYPE PASSWORD" })
+        </div>
+
+        <div style="color:red">
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        <div class="form-group">
+            <button class="tm-submit-btn" type="submit" name="submit">LogIn</button>
+        </div>
+
+        
+    </fieldset>
+
+     }
+
+    </div>
+
+
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#checking').hide();
+
+            $('#Email').blur(function () {
+
+                var email = $('#Email').val();
+
+                $.getJSON("/account/checkEmail?Email=" + email, function (data) {
+                    
+                    if (data) {
+                        $('#result').text("");
+                    }
+                    else {
+                        $('#result').text("User does not exist");
+                    }
+                });
+
+            });
+
+        });
+    </script>

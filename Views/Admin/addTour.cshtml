@@ -1,0 +1,65 @@
+﻿
+@model  FinalTemplate.Models.Tour
+
+@{
+    ViewBag.Title = "addTour";
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+          "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>Add New Hotel</title>
+    <link rel="stylesheet" href="~/Content/css/user.css">
+</head>
+<body>
+    <div id="wrapper">
+        @using (Html.BeginForm("addTour", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+
+
+        <fieldset>
+            <legend>Tour Registration Form</legend>
+
+            <div>
+                @Html.TextBoxFor(Model => Model.TourId, new { @placeholder = "TOUR ID" })
+            </div>
+
+            <div>
+                @Html.TextBoxFor(Model => Model.TourTitle, new { @placeholder = "TOUR TITLE" })
+            </div>
+            <div>
+                @Html.TextBoxFor(Model => Model.TourDate, new { @placeholder = "TOUR DATE" })
+            </div>
+            <div>
+                @Html.TextBoxFor(Model => Model.Cost, new { @placeholder = "COST PER HEAD" })
+            </div>
+            <div>
+                @Html.TextBoxFor(Model => Model.Duration, new { @placeholder = "TOUR DURATION" })
+            </div>
+            <div>
+                @Html.TextAreaFor(Model => Model.TourExp, new { @placeholder = "TOUR DETAILS" })
+            </div>
+
+            <div>
+                @Html.TextBoxFor(Model => Model.ImagePath, new { type = "file", @placeholder = "TOUR DETAILS" })
+            </div>
+
+            <div>
+                @Html.ActionLink("Home", "index", "Home",new { style="float:left"})
+            </div>
+            
+
+            <input type="submit" value="Add" style="float:right" />
+        </fieldset>
+        }
+    </div>
+</body>
+</html>
+
+
